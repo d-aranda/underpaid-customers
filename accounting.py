@@ -59,3 +59,23 @@ if customer6_expected != customer6_paid:
     print(f"{customer6_name} paid ${customer6_paid:.2f},",
           f"expected ${customer6_expected:.2f}"
           )
+
+
+MELON_COST = 1.00
+
+def accounting(file):
+    
+    customer_orders = open(file)
+
+    for line in customer_orders:
+        ordernum, name, melons, paid = line.rstrip().split("|")
+        float_paid = float(paid)
+        float_melons = float(melons)
+        customer_expected = float_melons * MELON_COST
+        
+        if customer_expected != float_paid:
+            print(f"{name} paid ${float_paid:.2f},",
+            f"expected ${customer_expected:.2f}")
+    
+
+accounting("customer-orders.txt")
