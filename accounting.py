@@ -61,6 +61,10 @@ if customer6_expected != customer6_paid:
           )
 
 
+
+#adding a function that removes the repetitive code
+
+
 MELON_COST = 1.00
 
 def accounting(file):
@@ -73,9 +77,19 @@ def accounting(file):
         float_melons = float(melons)
         customer_expected = float_melons * MELON_COST
         
-        if customer_expected != float_paid:
-            print(f"{name} paid ${float_paid:.2f},",
-            f"expected ${customer_expected:.2f}")
+        print(f"{name} paid ${float_paid:.2f},",
+        f"expected ${customer_expected:.2f}")
+        
+        if customer_expected > float_paid:
+            first_name = name.rstrip().split(" ")[0]
+            print(f"{first_name} underpaid ${customer_expected - float_paid:.2f}")
+
+
+        elif customer_expected < float_paid:
+            first_name = name.rstrip().split(" ")[0]
+            print(f"{first_name} overpaid ${float_paid - customer_expected:.2f}")
+
+
     
 
 accounting("customer-orders.txt")
